@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Pick!</title>
+    <style>
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e5a9ff;
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .wheel-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+
+        .wheel {
+            position: relative;
+            bottom: 40px;
+            width: 240px;
+            height: 240px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 10px solid #333;
+            background: conic-gradient(#edc2ff 0% 1%, #e6acff 1% 2%, #d87eff 2% 3%, #c94bff 3% 4%, #c336ff 4% 5%, #b300ff 5% 6%, #9800da 6% 7%, #7a00af 7% 8%, #5f0088 8% 9%, #3c0056 9% 10%,
+#edc2ff 10% 11%, #e6acff 11% 12%, #d87eff 12% 13%, #c94bff 13% 14%, #c336ff 14% 15%, #b300ff 15% 16%, #9800da 16% 17%, #7a00af 17% 18%, #5f0088 18% 19%, #3c0056 19% 20%,
+#edc2ff 20% 21%, #e6acff 21% 22%, #d87eff 22% 23%, #c94bff 23% 24%, #c336ff 24% 25%, #b300ff 25% 26%, #9800da 26% 27%, #7a00af 27% 28%, #5f0088 28% 29%, #3c0056 29% 30%,
+#edc2ff 30% 31%, #e6acff 31% 32%, #d87eff 32% 33%, #c94bff 33% 34%, #c336ff 34% 35%, #b300ff 35% 36%, #9800da 36% 37%, #7a00af 37% 38%, #5f0088 38% 39%, #3c0056 39% 40%,
+#edc2ff 40% 41%, #e6acff 41% 42%, #d87eff 42% 43%, #c94bff 43% 44%, #c336ff 44% 45%, #b300ff 45% 46%, #9800da 46% 47%, #7a00af 47% 48%, #5f0088 48% 49%, #3c0056 49% 50%,
+#edc2ff 50% 51%, #e6acff 51% 52%, #d87eff 52% 53%, #c94bff 53% 54%, #c336ff 54% 55%, #b300ff 55% 56%, #9800da 56% 57%, #7a00af 57% 58%, #5f0088 58% 59%, #3c0056 59% 60%,
+#edc2ff 60% 61%, #e6acff 61% 62%, #d87eff 62% 63%, #c94bff 63% 64%, #c336ff 64% 65%, #b300ff 65% 66%, #9800da 66% 67%, #7a00af 67% 68%, #5f0088 68% 69%, #3c0056 69% 70%,
+#edc2ff 70% 71%, #e6acff 71% 72%, #d87eff 72% 73%, #c94bff 73% 74%, #c336ff 74% 75%, #b300ff 75% 76%, #9800da 76% 77%, #7a00af 77% 78%, #5f0088 78% 79%, #3c0056 79% 80%,
+#111112 80% 81%, #e6acff 81% 82%, #d87eff 82% 83%, #c94bff 83% 84%, #c336ff 84% 85%, #b300ff 85% 86%, #9800da 86% 87%, #7a00af 87% 88%, #5f0088 88% 89%, #3c0056 89% 90%,
+#edc2ff 90% 91%, #e6acff 91% 92%, #d87eff 92% 93%, #c94bff 93% 94%, #c336ff 94% 95%, #b300ff 95% 96%, #9800da 96% 97%, #7a00af 97% 98%, #5f0088 98% 99%, #3c0056 99% 100%);
+            transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1);
+            transform-origin: center;
+        }
+
+        #spin-button {
+            position: relative;
+            bottom: 205px;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            border-radius: 100px;
+        }
+
+        #result {
+            position: relative;
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            bottom: 110px;
+            width: 100%; /* Ensure it spans the width of its container */
+            text-align: center; /* Center the text within the div */
+        }
+
+
+        #bottom-image {
+        position: absolute;
+        bottom: 0px; /* Adjust the spacing from the bottom as needed */
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 80%; /* Ensure it fits within the viewport */
+        height: auto; /* Maintain aspect ratio */
+}
+    </style>
+</head>
+<body>
+    <div class="wheel-container">
+        <div id="wheel" class="wheel"></div>
+        <button id="spin-button">Spin Me!</button>
+        <div id="result">Result: </div>
+
+    </div>
+    <img src="couple-pic.png" alt="img" id="bottom-image">
+    <script>
+        document.getElementById('spin-button').addEventListener('click', spinWheel);
+
+        function spinWheel() {
+            const wheel = document.getElementById('wheel');
+            const resultDisplay = document.getElementById('result');
+            
+            // List of date ideas
+            const dateIdeas = [
+                "Building a blanket fort and watching 90s cartoons", "Competitive pancake flipping contest", 
+                "Feeding ducks in a pond while wearing formal attire", "Making a time capsule and burying it in the backyard",
+                "Roller skate", "Candlelit dinner in a treehouse/balcony", "Painting pet rocks", "Creating a scavenger hunt for each other in a mall", 
+                "Mall date; picking each other a food and an activity", "Ghost tour in an old haunted mansion", "DIY hot sauce tasting challenge", 
+                "Stargazing while listening to alien conspiracy podcasts", "Building a gingerbread house in the middle of summer", "Giant bubble blowing in the park", 
+                "DIY tie-dye sock making", "Petting zoo visit with a twist: pretending to be animal experts", "Outdoor movie night with a sheet and projector", 
+                "Visiting a retro arcade and having a high-score competition", "Baking a cake without using any recipes", "Making friendship bracelets and giving them to strangers", 
+                "Indoor picnic on a rainy day", "Volunteering at a local animal shelter", "Creating a mini-golf course in the living room", "Attending a cheese tasting class", 
+                "Visiting a trampoline park", "Going to a pottery painting studio", "Taking a salsa dancing class", "Playing tourist in your own city",
+                "DIY escape room at home", "Visiting an insect zoo and holding a tarantula", "Mystery restaurant date: picking a place neither has been to", 
+                "Building a Lego city", "Attending a renaissance fair in costume", "Doing a blindfolded taste test of weird snacks", "Visiting a botanical garden and naming all the plants",
+                "Visiting a farmer's market and creating a meal with the finds", "Going on a nighttime hike with headlamps in the park", "Attending a live-action role-playing event",
+                "Making sushi at home", "Walking dogs at a local shelter", "Visiting an art installation or modern art museum", "Learning to brew beer at a local brewery",
+                "Visiting an indoor skydiving center", "Visiting a quirky roadside attraction", "Attending a cooking class for a cuisine neither has tried", 
+                "Doing a drive-in movie night", "Trying a virtual reality arcade", "Doing a puzzle together", "Going berry picking and making jam", 
+                "Attending a live comedy show", "Visiting a local flea market and finding weird items", "Taking a pottery wheel class", "Creating a DIY spa night with homemade masks", 
+                "Trying a new sport like curling or archery", "Adopt a fish and cook it", "Attending a paint and sip night", "Making your own pizza night",
+                "Going to a botanical garden and having a tea party", "Taking a segway tour of a local landmark", "Doing an online art class together", 
+                "Trying out a themed escape room", "Visiting a planetarium and learning about stars", "Going to a local orchard and picking apples", 
+                "Visiting a local cheese factory and doing a tasting", "Trying out a new board game", "Doing a backyard camping night", 
+                "Visiting a local aquarium and touching starfish", "Visiting a weird museum (like a mustard museum)", "Doing a themed movie marathon (like all James Bond)", 
+                "Going to a local fair and playing all the games", "Creating a scrapbook of your favorite memories", "Having a DIY pizza night", "Designing custom t-shirts", 
+                "Trying to recreate a famous painting", "Having a themed movie night", "Learning calligraphy together", "Making homemade ice cream", "Doing a blindfold taste test", 
+                "Doing a DIY home spa day", "Cooking a three-course meal", "Having a Lego building contest", "Learning origami", "Playing card games", 
+                "Making homemade pasta from scratch", "Making a quilt or blanket", "Playing a trivia game", "Doing a home improvement project", "Having a watercolor painting session", 
+                "Making a custom deck of playing cards", "Doing a meditation session together", "Having a picnic in your living room", "Creating a garden in a jar", 
+                "Doing a DIY embroidery project", "Having a themed cooking challenge", "Backyard camping", 
+                "Rage room date", "Shooting range", "Watch the latest movie of the night at a cinema", "Go restaurant hopping", "Thrift shopping"
+            ];
+            
+             // Generate a random index to pick from dateIdeas
+    const randomIndex = Math.floor(Math.random() * dateIdeas.length);
+    const randomDate = dateIdeas[randomIndex];
+    
+    // Calculate the degree to spin
+    const rotationDegree = (360 / dateIdeas.length) * randomIndex + (3600 + Math.floor(Math.random() * 360));
+    
+    // Apply the rotation to the wheel
+    wheel.style.transform = `rotate(${rotationDegree}deg)`;
+    
+    // Display the result after the spin animation ends
+    setTimeout(() => {
+        resultDisplay.textContent = randomDate;
+    }, 4000); // Match the transition duration
+        }
+    </script>
+</body>
+</html>
